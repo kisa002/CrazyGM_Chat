@@ -1,0 +1,132 @@
+@font-face{
+    font-family: NanumGothic;
+    src:url(NanumGothic.ttf);
+}
+html{
+    height:100%;
+}
+body{
+    font-family:NanumGothic;
+    margin:0px;
+    height:100%;
+    font-size:0.8em;
+}
+.main{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items: stretch;
+}
+textarea{
+    font-family:NanumGothic;
+}
+.c_notice{
+    border-radius:4px 4px 4px 4px;
+    align-self:center;
+    width:500px;
+    margin-top:8px;
+    margin-bottom:8px;
+    color:white;
+    padding:5px;
+    text-align:center;
+    opacity:0.5;/*ë§ˆìš°ìŠ¤ ì˜¬ë¦¬ë©´ opacity 1, ë–¼ë©´ 0, ë‚˜ì˜¬ ë•Œ ìž ê¹ 1*/
+}
+@media (max-width:550px){
+    .c_notice{
+        width:450px;
+    }
+}
+@media (max-width:500px){
+    .c_notice{
+        width:400px;
+    }
+}
+@media (max-width:450px){
+    .c_notice{
+        width:350px;
+    }
+}
+@media (max-width:400px){
+    .c_notice{
+        width:300px;
+    }
+}
+@media (max-width:350px){
+    .c_notice{
+        width:250px;
+    }
+}
+@media (max-width:300px){
+    .c_notice{
+        width:200px;
+    }
+}
+.c_n1{
+    background-color:red;
+    font-weight:bold;
+}
+.c_n2{
+    background-color:green;
+}
+.c_text{
+    padding:5px;
+    display:flex;
+    align-items: center;
+    /*background-color:antiquewhite;*/
+}
+.bold{
+    font-weight:bold;
+}
+.profile{
+    width:16px;
+    height:16px;
+    margin-right:5px;
+}
+#chat{
+    padding:4px;
+    flex:1;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+#ui{
+    background-color:lightgray;
+    padding:5px;
+    flex-basis: 32px;
+}
+.input{
+    display:flex;
+}
+#c_list{
+    width:100%;
+    background-color:white;
+    border:1px solid gray;
+    margin-bottom:6px;
+    flex:1;
+}
+#c_input{
+    flex:1;
+    background-color:white;
+    border:1px solid gray;
+    height:48px;
+    padding:4px;
+}
+#c_input:focus{
+    border:1px solid black;
+}
+#c_send{
+    background-color:white;
+    border:1px solid gray;
+    margin-left:8px;
+}
+#c_list:hover{
+    background-color:rgb(245,245,245);
+}
+#c_send:hover{
+    background-color:rgb(245,245,245);
+}
+p{
+    margin:0px;
+    margin-left:4px;
+    margin-right:4px;
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<head>
+    <title>CGM.Chat</title>
+    <meta charset="utf-8">
+    <script>
+        window.onresize=function(){
+            
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div id="chat">
+            <p class="c_notice c_n1">(&nbsp;공지 : CGM.Chat에 오신 것을 환영합니다! / 채팅 규정 확인해주시기 바랍니다.&nbsp;)</p>
+            <p class="c_notice c_n2">(&nbsp;<span class="bold">바람냥님</span>이 입장하셨습니다&nbsp;)</p>
+            <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">바람냥&nbsp;:&nbsp;</span>안녕</p>
+
+            <p class="c_notice c_n2">(&nbsp;<span class="bold">HelloWorld님</span>이 입장하셨습니다&nbsp;)</p>
+            <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">HelloWorld&nbsp;:&nbsp;</span>안녕하세요</p>
+            <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">바람냥&nbsp;:&nbsp;</span>와우</p>
+        </div>
+        <div id="ui">
+            <div class="input">
+                <input id="c_list" type="button" value="'▽'">
+            </div>
+            <div class="input">
+	            <form action="server/chat.php" method="post">
+	                <textarea id="c_input" placeholder="&nbsp;>&nbsp;채팅을 입력하세요" ></textarea>
+	                <input type="button" id="c_send" value="보내기">
+	            </form>
+            </div>
+        </div>
+    </div>
+</body>
+<link rel="stylesheet" type="text/css" href="style.css">
