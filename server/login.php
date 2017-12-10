@@ -1,3 +1,5 @@
+<meta charset="UTF-8">
+
 <?php
 	$sql = mysqli_connect("localhost", "crazygm", "[#crazygm#]", "crazygm");
 	
@@ -15,12 +17,12 @@
 	{
 		if($row["ban"] == true)
 		{
-			echo "<script>alert('YOU BANNED')</script>";
+			echo "<script>alert('정지된 계정입니다.\n관리자에게 문의부탁드리겠습니다.')</script>";
 			header("localtion:index.php");
 		}
 		else
 		{
-			echo "<script>alert('WELCOME : ".$row["nickname"]."')</script>\n";
+			echo "<script>alert('".$row["nickname"]."님 환영합니다!')</script>\n";
 			
 			$_SESSION["login_nickname"] = $row["nickname"];	
 			
@@ -29,7 +31,7 @@
 	}
 	else
 	{
-		echo "<script>alert('LOGIN FAILED')</script>\n";
+		echo "<script>alert('로그인 실패')</script>\n";
 		
 		echo("<script>location.href='../index.php';</script>");
 	}

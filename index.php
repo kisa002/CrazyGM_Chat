@@ -14,10 +14,13 @@
             _register=document.getElementById("register");
             _win_back=document.getElementById("win_back");
         }
-        function login(){
+        function login(nickname){
+            var t1=document.getElementById("c_input");
             document.getElementById("login").style.display="none";
             document.getElementById("register").style.display="none";
             document.getElementById("win_back").style.display="none";
+            
+            t1.placeholder = nickname + "님 > 채팅을 입력하세요";
         }
         function goto_login(){
             _login.style.display="block";
@@ -47,6 +50,10 @@
                 _shift=0;
             }
         }
+        function logout()
+        {
+	        location.href="server/logout.php";
+        }
     </script>
 </head>
 <?php
@@ -57,7 +64,7 @@
  	if($nickname == null)
  		echo '<body onkeyup="check_shift()">';
  	else
- 		echo '<body onkeyup="check_shift()" onload="login()">';
+ 		echo '<body onkeyup="check_shift()" onload="login('."'$nickname'".')">';
 ?>
     <div class="main">
         <div id="chat">
@@ -93,6 +100,7 @@
                 <div class="input">
                     <textarea id="c_input" placeholder="&nbsp;>&nbsp;채팅을 입력하세요"  onkeydown="key_check()"></textarea>
                     <input type="button" id="c_send" onclick="send()" value="보내기">
+                    <input type="button" id="c_send" onclick="logout()" value="로그아웃">
                 </div>
             </form>
         </div>
