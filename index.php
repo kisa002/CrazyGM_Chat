@@ -9,6 +9,7 @@
         var mode=0;
         var _login,_register;
         var _shift=0;
+        var nickname;
         window.onload=function(){
             _login=document.getElementById("login");
             _register=document.getElementById("register");
@@ -21,6 +22,8 @@
             document.getElementById("win_back").style.display="none";
             
             t1.placeholder = nickname + "님 > 채팅을 입력하세요";
+            
+            this.nickname = nickname;
         }
         function goto_login(){
             _login.style.display="block";
@@ -41,7 +44,10 @@
             }
         }
         function send(){
-            //alert(document.getElementById("c_input").value);
+            document.form_chat.nickname.value = nickname;
+            document.form_chat.target = "ifrm_chat";
+            document.form_chat.submit();
+            
             document.getElementById("c_input").value="";
             _shift=0;
         }
@@ -68,8 +74,11 @@
 ?>
     <div class="main">
         <div id="chat">
+<!--
             <div class="c_center"><div class="c_notice c_n1">(&nbsp;공지 : CGM.Chat에 오신 것을 환영합니다! / 채팅 규정 확인해주시기 바랍니다.&nbsp;)</div></div>
             <div class="c_center"><div class="c_notice c_n2">(&nbsp;<span class="bold">바람냥님</span>이 입장하셨습니다&nbsp;)</div></div>
+-->
+<!--
             <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">바람냥&nbsp;:&nbsp;</span>안녕</p>
 
             <div class="c_center"><div class="c_notice c_n2">(&nbsp;<span class="bold">HelloWorld님</span>이 입장하셨습니다&nbsp;)</div></div>
@@ -90,19 +99,23 @@
             <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">바람냥&nbsp;:&nbsp;</span>와우</p>
             <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">바람냥&nbsp;:&nbsp;</span>와우</p>
             <p class="c_text"><img src="img/ico/woket.png" class="profile"><span class="bold">바람냥&nbsp;:&nbsp;</span>와우</p>
+-->
             
+            <iframe name="ifrm_chat" src="server/chat.php" frameborder="0" width="100%" height="100%"></iframe>            
         </div>
         <div id="ui">
-            <form>
-                <div class="input">
-                    <input id="c_list" type="button" value="'▽'">
-                </div>
-                <div class="input">
-                    <textarea id="c_input" placeholder="&nbsp;>&nbsp;채팅을 입력하세요"  onkeydown="key_check()"></textarea>
-                    <input type="button" id="c_send" onclick="send()" value="보내기">
+			<div class="input">
+            	<input id="c_list" type="button" value="'▽'">
+			</div>
+            
+            <div class="input">
+	            <form name="form_chat" class="input" action="server/chat.php" method="post">
+					<textarea name="message" id="c_input" placeholder="&nbsp;>&nbsp;채팅을 입력하세요" onkeydown="key_check()"></textarea>
+	            		<input type="text" name="nickname" hidden="true">
+						<input type="button" id="c_send" onclick="send()" value="보내기">
+				</form>
                     <input type="button" id="c_send" onclick="logout()" value="로그아웃">
-                </div>
-            </form>
+			</div>
         </div>
         
         <div id="win_back">
