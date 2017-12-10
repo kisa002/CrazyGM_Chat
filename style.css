@@ -1,7 +1,7 @@
 /*Main*/
 @font-face{
     font-family: NanumGothic;
-    src:url(NanumGothic.ttf);
+    src:url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 }
 html{
     height:100%;

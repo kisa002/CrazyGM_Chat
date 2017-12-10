@@ -9,12 +9,14 @@
 
 	$row = mysqli_fetch_array($result);
 	
+	session_start();
+	
 	if($row != null)
 	{
 		if($row["ban"] == true)
 		{
 			echo "<script>alert('YOU BANNED')</script>";
-			header("localtion:index.html");
+			header("localtion:index.php");
 		}
 		else
 		{
@@ -22,13 +24,13 @@
 			
 			$_SESSION["login_nickname"] = $row["nickname"];	
 			
-			echo("<script>location.href='../index.html';</script>");
+			echo("<script>location.href='../index.php';</script>");
 		}
 	}
 	else
 	{
 		echo "<script>alert('LOGIN FAILED')</script>\n";
 		
-		echo("<script>location.href='../index.html';</script>");
+		echo("<script>location.href='../index.php';</script>");
 	}
 ?>

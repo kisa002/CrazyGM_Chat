@@ -19,6 +19,12 @@
 			
 			echo "<script>alert('Register SUCCESS')</script>";
 			echo "REGISTER SUCCESS<br><br>Nickname : $nickname<br>Email : $email<br>Icon : $icon";	
+			echo("<script>location.href='../index.html';</script>");
+		}
+		else
+		{
+			echo "<script>alert('Register FAILED')</script>";
+			echo("<script>location.href='../index.php';</script>");
 		}
 	?>
 		
@@ -49,8 +55,8 @@
 			
 			echo "		</table>\n";
 			
-			echo "	<a href='../register.html'>register page</a>\n";
-			echo "	<a href='../'>main page</a>\n";
+// 			echo "	<a href='../register.html'>register page</a>\n";
+// 			echo "	<a href='../'>main page</a>\n";
 			
 			echo "</html>";
 	?>
