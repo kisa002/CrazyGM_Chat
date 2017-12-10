@@ -1,3 +1,4 @@
+/*Main*/
 @font-face{
     font-family: NanumGothic;
     src:url(NanumGothic.ttf);
@@ -17,19 +18,20 @@ body{
     flex-direction:column;
     align-items: stretch;
 }
+
+/*Chat*/
 textarea{
     font-family:NanumGothic;
 }
 .c_notice{
     border-radius:4px 4px 4px 4px;
-    align-self:center;
     width:500px;
     margin-top:8px;
     margin-bottom:8px;
     color:white;
     padding:5px;
     text-align:center;
-    opacity:0.5;/*ë§ˆìš°ìŠ¤ ì˜¬ë¦¬ë©´ opacity 1, ë–¼ë©´ 0, ë‚˜ì˜¬ ë•Œ ìž ê¹ 1*/
+    opacity:0.5;/*마우스 올리면 opacity 1, 떼면 0, 나올 때 잠깐 1*/
 }
 @media (max-width:550px){
     .c_notice{
@@ -71,8 +73,12 @@ textarea{
 .c_text{
     padding:5px;
     display:flex;
-    align-items: center;
     /*background-color:antiquewhite;*/
+}
+.c_center{
+    width:100%;
+    display:flex;
+    justify-content:center;
 }
 .bold{
     font-weight:bold;
@@ -81,14 +87,22 @@ textarea{
     width:16px;
     height:16px;
     margin-right:5px;
+    margin-top:1.5px;
 }
 #chat{
     padding:4px;
     flex:1;
-    overflow:hidden;
-    display:flex;
+    overflow-y:scroll;
     flex-direction:column;
 }
+p{
+    margin:0px;
+    margin-left:4px;
+    margin-right:4px;
+    line-height:1.5em;
+}
+
+/*Ui*/
 #ui{
     background-color:lightgray;
     padding:5px;
@@ -110,6 +124,7 @@ textarea{
     border:1px solid gray;
     height:48px;
     padding:4px;
+    resize:none;
 }
 #c_input:focus{
     border:1px solid black;
@@ -125,8 +140,84 @@ textarea{
 #c_send:hover{
     background-color:rgb(245,245,245);
 }
-p{
-    margin:0px;
-    margin-left:4px;
-    margin-right:4px;
+
+/*Window*/
+#win_back{
+    background-color:rgba(0,0,0,0.5);
+    width:100%;
+    height:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /*display:none;*/
+}
+#win{
+    background-color:white;
+    width:256px;
+    height:300px;
+    padding:32px;
+}
+#login{
+    text-align: center;
+}
+#register{
+    text-align: center;
+    display:none;
+}
+.win_input{
+    width:140px;
+    padding:4px;
+    border:1px solid lightgray;
+    margin-bottom:5px;
+}
+.win_input:hover{
+    background-color:lightgray;
+}
+.win_input:focus{
+    border:1px solid gray;
+}
+.win_span{
+    width:60px;
+    margin-right:10px;
+    display:inline-block;
+    text-align:center;
+    font-weight:bold;
+}
+.win_button{
+    background-color:white;
+    color:darkgray;
+    border:1px solid darkgray;
+    margin:5px;
+    padding:7px;
+    font-size:1.2em;
+    font-family:NanumGothic;
+}
+.win_button:hover{
+    background-color:black;
+    border:1px solid black;
+    color:white;
+}
+.warn{
+    display:inline-block;
+    margin:15px;
+    color:white;
+    padding:8px;
+    background-color:red;
+    opacity: 0.7;
+}
+.warn:hover{
+    opacity:1;
+}
+h2{
+    text-align: center;
+    line-height:6px;
+}
+#register hr{
+    margin-bottom:0px;
+}
+#login hr{
+    margin-bottom:65px;
 }
