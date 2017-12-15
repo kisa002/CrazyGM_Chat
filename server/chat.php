@@ -18,7 +18,7 @@
 			
 			$message = $_POST["message"];
 			$nickname = $_POST["nickname"];
-			
+            $nickname=htmlspecialchars($nickname,ENT_QUOTES);
 			mysqli_query($sql, "set session character_set_connection=utf8;");
 			mysqli_query($sql, "set session character_set_results=utf8;");	
 			mysqli_query($sql, "set session character_set_client=utf8;");
@@ -27,6 +27,10 @@
 			
 			if($message != null)
 			{
+                $message=htmlspecialchars($message,ENT_QUOTES);
+                $message=str_replace("\n","<br>",$message);
+                //str_replace("<","&lt;",$message);
+                //$message=//str_replace(">","&gt;",$message);
 				mysqli_query($sql, "INSERT INTO chat (message, nickname) VALUES ('$message', '$nickname')");	
 			}
 			
@@ -40,9 +44,11 @@
 			}
 			
 			
-/*
-			//while(true)
+// 			while(true)
 			{
+				flush();
+				sleep(0);
+				
 				$result = mysqli_query($sql, "SELECT * FROM chat WHERE id=".($current_id + 1));
 				
 				$row = mysqli_fetch_array($result);
@@ -54,7 +60,6 @@
 					$current_id += 1;
 				}
 			}
-*/
 			
 			//echo '<div class="c_center"><div class="c_notice c_n2">(&nbsp;<span class="bold">'.$row["nickname"].'</span>이 입장하셨습니다&nbsp;)</div></div>';
 		?>

@@ -8,7 +8,6 @@
     <script>
         var mode=0;
         var _login,_register;
-        var _shift=0;
         var nickname;
         window.onload=function(){
             _login=document.getElementById("login");
@@ -33,17 +32,16 @@
             _login.style.display="none";
             _register.style.display="block";
         }
-        function key_check(){
-            if ((event.keyCode==13) && (_shift===0)){
-                event.preventDefault();
-                event.stopImmediatePropagation();
-                send();
-            }
-            else if (event.keyCode==16){
-                _shift=1;
-            }
+        function key_check(event){
+            if (event.keyCode == 13)
+                if (!event.shiftKey){
+                    send();
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                }
         }
         function send(){
+           /* document.getElementById("c_input").value=document.getElementById("c_input").value.replace(/</g,'&lt;'); document.getElementById("c_input").value=document.getElementById("c_input").value.replace(/>/g,'&gt;');*/
             document.form_chat.nickname.value = nickname;
             document.form_chat.target = "ifrm_chat";
             document.form_chat.submit();
@@ -51,15 +49,17 @@
             document.getElementById("c_input").value="";
             _shift=0;
         }
-        function check_shift(){
-            if(event.keyCode==16){
-                _shift=0;
-            }
-        }
         function logout()
         {
 	        location.href="server/logout.php";
         }
+        function chat_refresh(){
+			if(document.ifrm_chat != null)
+		        document.ifrm_chat.location.reload(true);
+	        //setTimeout("chat_refresh()", 3000);
+		}
+		
+		chat_refresh();
     </script>
 </head>
 <?php
@@ -68,9 +68,9 @@
 	$nickname = $_SESSION["login_nickname"];
  	
  	if($nickname == null)
- 		echo '<body onkeyup="check_shift()">';
+ 		echo '<body>';
  	else
- 		echo '<body onkeyup="check_shift()" onload="login('."'$nickname'".')">';
+ 		echo '<body onload="login('."'$nickname'".')">';
 ?>
     <div class="main">
         <div id="chat">
@@ -104,18 +104,16 @@
             <iframe name="ifrm_chat" src="server/chat.php" frameborder="0" width="100%" height="100%"></iframe>            
         </div>
         <div id="ui">
-			<div class="input">
-            	<input id="c_list" type="button" value="'▽'">
-			</div>
-            
-            <div class="input">
-	            <form name="form_chat" class="input" action="server/chat.php" method="post">
-					<textarea name="message" id="c_input" placeholder="&nbsp;>&nbsp;채팅을 입력하세요" onkeydown="key_check()"></textarea>
-	            		<input type="text" name="nickname" hidden="true">
-						<input type="button" id="c_send" onclick="send()" value="보내기">
-				</form>
-                    <input type="button" id="c_send" onclick="logout()" value="로그아웃">
-			</div>
+            <form name="form_chat" action="server/chat.php" method="post">
+                <div class="input">
+                    <input id="c_list" type="button" value="'▽'">
+                </div>
+                <div class="input">
+                    <textarea name="message" id="c_input" placeholder="&nbsp;>&nbsp;채팅을 입력하세요" onkeydown="key_check(event)"></textarea>
+                    <input type="text" name="nickname" hidden="true">
+                    <input type="button" id="c_send" onclick="send()" value="보내기">
+                </div>
+            </form>
         </div>
         
         <div id="win_back">
@@ -134,7 +132,7 @@
                 <div id="register">
                     <h2>회원가입</h2><hr>
                     <form action="server/register.php" method=post>
-                        <span class="warn">중복 아이디 생성은 벤입니다.<br>가입 시 계정 확인 메일이 전송됩니다.</span><br>
+                        <span class="warn">중복 계정 생성은 벤입니다.<br>가입 시 계정 확인 메일이 전송됩니다.</span><br>
                         <span class="win_span">닉네임</span><input type=text class="win_input" name="nickname" required><br>
                         <span class="win_span">이메일</span><input type=email class="win_input" name="email" required><br>
                         <span class="win_span">비밀번호</span><input type=password class="win_input" name="password" required><br>
