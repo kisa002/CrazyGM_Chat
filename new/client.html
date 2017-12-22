@@ -81,6 +81,9 @@ textarea{
 .c_n2{
     background-color:green;
 }
+.c_n3{
+    background-color:purple;
+}
 .c_text{
     padding:5px;
     display:flex;
@@ -119,6 +122,7 @@ p{
 /*Ui*/
 #ui{
     background-color:lightgray;
+
     padding:5px;
     flex-basis: 32px;
 }
@@ -241,28 +245,41 @@ h2{
   text-align: center;
   border: 0px;
 }
+#chatLog{
+    background-color: #FFFFFF;
+    padding: 0.5%;
+
+    width: 100%;
+    height: 80%;
+
+    overflow:auto;
+    overflow:scroll;
+}
     </style>
   </head>
   <body>
     
-    <div id="ui">
-      <div>
-          <textarea id="chatLog" class="chat_log" readonly></textarea>
-      </div>
-      
-      <form id="chat">
-          <div class="input">
-              <input id="c_list" type="button" value="'▽'">
-          </div>
-
-          <div class="input">
-            <input id="name" class="name" type="text" readonly>
-            <input type="text" class="message" id="message" placeholder="&nbsp;>&nbsp;채팅을 입력하세요">
-            <input type="submit" class="chat" id="c_send" value="보내기">
-          </div>
-      </form>
+    <div id="chatLog" class="chat_log">
+        <div class="c_center"><div class="c_notice c_n3">CGM.Chat에 오신 것을 환영합니다!<br><br>채팅 규정 확인해주시기 바랍니다.</div></div>
+        <div id="chatEnd"></div>
     </div>
-    <div id="box" class="box">
+
+    <div id="ui">
+        <form id="chat">
+            <div class="input">
+                <input id="c_list" type="button" value="'▽'">
+            </div>
+    
+            <div class="input">
+                <input id="name" class="name" type="text" readonly>
+                <input type="text" class="message" id="message" placeholder="&nbsp;>&nbsp;채팅을 입력하세요">
+                <input type="submit" class="chat" id="c_send" value="보내기">
+            </div>
+        </form>
+      
+          <div id="box" class="box">
+    </div>
+          
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
     <script>
@@ -274,7 +291,7 @@ h2{
         e.preventDefault();
       });
       socket.on('receive message', function(msg){
-        $('#chatLog').append(msg+'\n');
+        $('#chatEnd').before("<p>" + msg + "</p>");
         $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
       });
       socket.on('change name', function(name){

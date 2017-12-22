@@ -12,9 +12,12 @@ io.on('connection', function(socket){
   console.log('user connected: ', socket.id);
   var name = "user" + count++;
   io.to(socket.id).emit('change name',name);
+  //io.emit('receive message', "<b>" + name + "님</b>이 접속하셨습니다.");
+  io.emit('receive message', '<div class="c_center"><div class="c_notice c_n2">(&nbsp;<span class="bold">' + name + '님</span>이 입장하셨습니다&nbsp;)</div></div>');
 
   socket.on('disconnect', function(){
     console.log('user disconnected: ', socket.id);
+    io.emit('receive message', '<div class="c_center"><div class="c_notice c_n1">(&nbsp;<span class="bold">' + name + '님</span>이 퇴장하셨습니다&nbsp;)</div></div>');
   });
 
   socket.on('send message', function(name,text){
@@ -25,5 +28,5 @@ io.on('connection', function(socket){
 });
 
 http.listen(3000, function(){
-  console.log('server on!');
+  console.log('Server Start!');
 });
