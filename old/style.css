@@ -1,0 +1,223 @@
+/*Main*/
+@font-face{
+    font-family: NanumGothic;
+    src:url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+}
+html{
+    height:100%;
+}
+body{
+    font-family:NanumGothic;
+    margin:0px;
+    height:100%;
+    font-size:0.8em;
+}
+.main{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items: stretch;
+}
+
+/*Chat*/
+textarea{
+    font-family:NanumGothic;
+}
+.c_notice{
+    border-radius:4px 4px 4px 4px;
+    width:500px;
+    margin-top:8px;
+    margin-bottom:8px;
+    color:white;
+    padding:5px;
+    text-align:center;
+    opacity:0.5;/*마우스 올리면 opacity 1, 떼면 0, 나올 때 잠깐 1*/
+}
+@media (max-width:550px){
+    .c_notice{
+        width:450px;
+    }
+}
+@media (max-width:500px){
+    .c_notice{
+        width:400px;
+    }
+}
+@media (max-width:450px){
+    .c_notice{
+        width:350px;
+    }
+}
+@media (max-width:400px){
+    .c_notice{
+        width:300px;
+    }
+}
+@media (max-width:350px){
+    .c_notice{
+        width:250px;
+    }
+}
+@media (max-width:300px){
+    .c_notice{
+        width:200px;
+    }
+}
+.c_n1{
+    background-color:red;
+    font-weight:bold;
+}
+.c_n2{
+    background-color:green;
+}
+.c_text{
+    padding:5px;
+    display:flex;
+    /*background-color:antiquewhite;*/
+}
+.c_center{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+.bold{
+    font-weight:bold;
+}
+.profile{
+    width:16px;
+    height:16px;
+    margin-right:5px;
+    margin-top:1.5px;
+}
+#chat{
+    padding:4px;
+    flex:1;
+    overflow-y:scroll;
+    flex-direction:column;
+}
+p{
+    margin:0px;
+    margin-left:4px;
+    margin-right:4px;
+    line-height:1.5em;
+}
+
+/*Ui*/
+#ui{
+    background-color:lightgray;
+    padding:5px;
+    flex-basis: 32px;
+}
+.input{
+    display:flex;
+}
+#c_list{
+    width:100%;
+    background-color:white;
+    border:1px solid gray;
+    margin-bottom:6px;
+    flex:1;
+}
+#c_input{
+    flex:1;
+    background-color:white;
+    border:1px solid gray;
+    height:48px;
+    padding:4px;
+    resize:none;
+}
+#c_input:focus{
+    border:1px solid black;
+}
+#c_send{
+    background-color:white;
+    border:1px solid gray;
+    margin-left:8px;
+}
+#c_list:hover{
+    background-color:rgb(245,245,245);
+}
+#c_send:hover{
+    background-color:rgb(245,245,245);
+}
+
+/*Window*/
+#win_back{
+    background-color:rgba(0,0,0,0.5);
+    width:100%;
+    height:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /*display:none;*/
+}
+#win{
+    background-color:white;
+    width:256px;
+    height:300px;
+    padding:32px;
+}
+#login{
+    text-align: center;
+}
+#register{
+    text-align: center;
+    display:none;
+}
+.win_input{
+    width:140px;
+    padding:4px;
+    border:1px solid lightgray;
+    margin-bottom:5px;
+}
+.win_input:hover{
+    background-color:lightgray;
+}
+.win_input:focus{
+    border:1px solid gray;
+}
+.win_span{
+    width:60px;
+    margin-right:10px;
+    display:inline-block;
+    text-align:center;
+    font-weight:bold;
+}
+.win_button{
+    background-color:white;
+    color:darkgray;
+    border:1px solid darkgray;
+    margin:5px;
+    padding:7px;
+    font-size:1.2em;
+    font-family:NanumGothic;
+}
+.win_button:hover{
+    background-color:black;
+    border:1px solid black;
+    color:white;
+}
+.warn{
+    display:inline-block;
+    margin:15px;
+    color:white;
+    padding:8px;
+    background-color:red;
+    opacity: 0.7;
+}
+.warn:hover{
+    opacity:1;
+}
+h2{
+    text-align: center;
+    line-height:6px;
+}
+#register hr{
+    margin-bottom:0px;
+}
+#login hr{
+    margin-bottom:65px;
+}
