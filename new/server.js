@@ -23,6 +23,8 @@ io.on('connection', function(socket){
   socket.on('send message', function(name,text){
     var msg = name + ' : ' + text;
     console.log(msg);
+    msg = msg.replace("<", "&lt;");
+    msg = msg.replace(">", "&gt;");
     io.emit('receive message', msg);
   });
 });
