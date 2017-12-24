@@ -21,10 +21,25 @@ io.on('connection', function(socket){
   });
 
   socket.on('send message', function(name,text){
-    var msg = name + ' : ' + text;
-    console.log(msg);
-    msg = msg.replace("<", "&lt;");
-    msg = msg.replace(">", "&gt;");
+    text = text.replace("<", "&lt;");
+    text = text.replace(">", "&gt;");
+
+    if(text.indexOf("#notice:") != -1)
+    {
+      console.log(text);
+
+      text = text.replace("#notice:", "");
+      text = '<div class="c_center"><div class="c_notice c_n3">' + text + '</div></div>';
+
+      var msg = text;
+    }
+    else
+    {
+      var msg = name + ' : ' + text;
+
+      console.log(msg);
+    }
+    
     io.emit('receive message', msg);
   });
 });
