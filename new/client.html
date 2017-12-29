@@ -256,9 +256,46 @@ h2{
     overflow:scroll;
 }
     </style>
+
+    <script>
+        var mode=0;
+        var _login,_register;
+        var _shift=0;
+        window.onload=function(){
+            _login=document.getElementById("login");
+            _register=document.getElementById("register");
+        }
+        function goto_login(){
+            _login.style.display="block";
+            _register.style.display="none";
+        }
+        function goto_register(){
+            _login.style.display="none";
+            _register.style.display="block";
+        }
+        function key_check(){
+            if ((event.keyCode==13) && (_shift===0)){
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                send();
+            }
+            else if (event.keyCode==16){
+                _shift=1;
+            }
+        }
+        function send(){
+            //alert(document.getElementById("c_input").value);
+            document.getElementById("c_input").value="";
+            _shift=0;
+        }
+        function check_shift(){
+            if(event.keyCode==16){
+                _shift=0;
+            }
+        }
+    </script>
   </head>
   <body>
-    
     <div id="chatLog" class="chat_log">
         <div class="c_center"><div class="c_notice c_n3">CGM.Chat에 오신 것을 환영합니다!<br><br>채팅 규정 확인해주시기 바랍니다.</div></div>
         <div id="chatEnd"></div>
@@ -279,6 +316,39 @@ h2{
       
           <div id="box" class="box">
     </div>
+
+    <div id="win_back">
+        <div id="win">
+            <div id="login">
+                <form id="login_form">
+                    <div>
+                        <h2>로그인</h2><hr>
+                        <br>
+                        <span class="win_span">이메일</span><input id="login_email" type=email class="win_input" name="email" required><br>
+                        <span class="win_span">비밀번호</span><input id="login_pw" type=password class="win_input" name="password" required><br>
+                        <input id="login_icon" type=text class="win_input" name="icon" value="-1" hidden="true"><br>
+                        <input type=submit class="win_button" value="로그인" required>
+                        <input type="button" class="win_button" onclick="goto_register()" value="회원가입">
+                    </div>
+                </form>
+            </div>
+            <div id="register">
+                <h2>회원가입</h2><hr>
+                <form id="register_form">
+                    <div>
+                        <span class="warn">중복 아이디 생성은 벤입니다.<br>가입 시 계정 확인 메일이 전송됩니다.</span><br>
+                        <span class="win_span">닉네임</span><input id="register_nick" type=text class="win_input" name="nickname" required><br>
+                        <span class="win_span">이메일</span><input id="register_email" type=email class="win_input" name="email" required><br>
+                        <span class="win_span">비밀번호</span><input id="register_pw1" type=password class="win_input" name="password" required><br>
+                        <span class="win_span">비밀번호 확인</span><input id="register_pw2" type=password class="win_input" name="password2" required><br>
+                        <input type=text class="win_input" name="icon" value="-1" hidden="true"><br>
+                        <input type=submit class="win_button" value="가입하기" required>
+                        <input type="button" class="win_button" onclick="goto_login()" value="취소">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
           
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
@@ -288,6 +358,20 @@ h2{
         socket.emit('send message', $('#name').val(), $('#message').val());
         $('#message').val("");
         $("#message").focus();
+        e.preventDefault();
+      });
+      $('#login_form').on('submit', function(e){
+          socket.emit('login', $('#email').val(), $('#password').val());
+          $('#email').val("");
+          $('#password').val("");
+          e.preventDefault();
+      });
+      $('#register_form').on('submit', function(e){
+        socket.emit('register', $('#register_nick').val(), $('#register_email').val(), $('#register_pw').val(), $('register_icon').val());
+        $('#register_nick').val("");
+        $('#register_email').val("");
+        $('#register_pw').val("");
+        $('#register_icon').val("");
         e.preventDefault();
       });
       socket.on('receive message', function(msg){

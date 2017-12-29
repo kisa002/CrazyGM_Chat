@@ -42,6 +42,14 @@ io.on('connection', function(socket){
     
     io.emit('receive message', msg);
   });
+
+  socket.on('login', function(email, pw){
+    console.log("[LOGIN] email : " + email + " / pw : " + pw);
+  });
+
+  socket.on('register', function(nick, email, pw, icon){
+    console.log("[REGISTER] nick : " + nick + " / email : " + email + " / pw : " + pw + " / icon : " + icon);
+  });
 });
 
 http.listen(80, function(){
